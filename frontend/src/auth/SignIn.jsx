@@ -12,9 +12,29 @@ const SignIn = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
+
+  const validateFields = () => {
+    if (!email.trim()) {
+      toast.error("Email is required.");
+      return false;
+    }
+    if (!password.trim()) {
+      toast.error("Password is required.");
+      return false;
+    }
+    
+    return true;
+  };
 
   const handleSignIn = async (e) => {
     e.preventDefault();
+    setLoading(true);
+
+    if (!validateFields()) {
+      setLoading(false); // Re-enable button if validation fails
+      return;
+    }
   
     try {
       const response = await axios.post('https://dutu-app-api.vercel.app/api/auth/login', {
@@ -83,7 +103,7 @@ const SignIn = () => {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               className="form-control input-dark"
-              required
+              //required
               placeholder="Enter your email"
             />
           </div>
@@ -98,7 +118,7 @@ const SignIn = () => {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               className="form-control input-dark"
-              required
+              //required
               placeholder="Enter your password"
             />
           </div>
@@ -106,8 +126,9 @@ const SignIn = () => {
           <button 
             type="submit" 
             className="btn btn-primary w-100 py-2 fw-bold"
+            disabled={loading}
           >
-            Sign In
+            {loading ? "Signing In..." : "Sign In"}
           </button>
           
           <div className="d-flex align-items-center justify-content-center mt-3">

@@ -13,15 +13,39 @@ const SignUp = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+
+  const validateFields = () => {
+    if (!email.trim()) {
+      toast.error("Email is required.");
+      return false;
+    }
+    if (!password.trim()) {
+      toast.error("Password is required.");
+      return false;
+    }
+    if (!confirmPassword.trim()) {
+      toast.error("Confirm password is required.");
+      return false;
+    }
+    if (password !== confirmPassword) {
+      toast.error("Passwords do not match!");
+      return false;
+    }
+
+    return true;
+  };
 
   const handleSignUp = async (e) => {
     e.preventDefault();
-  
-    if (password !== confirmPassword) {
-      toast.error('Passwords do not match');
+    setLoading(true);
+
+    if (!validateFields()) {
+      setLoading(false);
       return;
     }
+  
   
     try {
       const response = await axios.post('https://dutu-app-api.vercel.app/api/auth/register', { 
@@ -82,7 +106,7 @@ const SignUp = () => {
               value={name}
               onChange={(e) => setName(e.target.value)}
               className="form-control input-dark"
-              required
+              //required
               placeholder="Enter your full name"
             />
           </div>
@@ -97,7 +121,7 @@ const SignUp = () => {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               className="form-control input-dark"
-              required
+              //required
               placeholder="Enter your email"
             />
           </div>
@@ -112,7 +136,7 @@ const SignUp = () => {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               className="form-control input-dark"
-              required
+              //required
               placeholder="Create a password"
             />
           </div>
@@ -127,7 +151,7 @@ const SignUp = () => {
               value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
               className="form-control input-dark"
-              required
+              //required
               placeholder="Confirm your password"
             />
           </div>
@@ -135,8 +159,9 @@ const SignUp = () => {
           <button 
             type="submit" 
             className="btn btn-primary w-100 py-2 fw-bold"
+            disabled={loading}
           >
-            Create Account
+            {loading ? "Creating Account..." : "Create Account"} 
           </button>
           
           <div className="d-flex align-items-center justify-content-center mt-3">

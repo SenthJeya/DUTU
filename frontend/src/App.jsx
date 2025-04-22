@@ -23,7 +23,7 @@ function App() {
         newestOnTop={true}
         closeOnClick
         rtl={false}
-        toastClassName="dark-toast"
+        theme="colored"
       />
       <Routes>
         <Route path="/" element={<SignIn />} />
