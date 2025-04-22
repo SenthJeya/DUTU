@@ -33,7 +33,7 @@ const Dashboard = () => {
           throw new Error('No token found. Please login.');
         }
   
-        const response = await axios.get('https://dutu-app-api.vercel.app/api/task/get', {
+        const response = await axios.get('https://dutu-app-api.vercel.app/task/get', {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -55,7 +55,7 @@ const Dashboard = () => {
     try {
       const updatedCompleted = !task.completed;
       await axios.put(
-        `https://dutu-app-api.vercel.app/api/task/update/${task._id}`,
+        `https://dutu-app-api.vercel.app/task/update/${task._id}`,
         { completed: updatedCompleted },
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -91,13 +91,13 @@ const Dashboard = () => {
 
     try {
       await axios.post(
-        'https://dutu-app-api.vercel.app/api/task/create',
+        'https://dutu-app-api.vercel.app/task/create',
         { name: taskName },
         { headers: { Authorization: `Bearer ${token}` } }
       );
 
       // Refresh tasks after adding
-      const response = await axios.get('https://dutu-app-api.vercel.app/api/task/get', {
+      const response = await axios.get('https://dutu-app-api.vercel.app/task/get', {
         headers: { Authorization: `Bearer ${token}` }
       });
 
@@ -115,7 +115,7 @@ const Dashboard = () => {
 
     try {
       await axios.delete(
-        `https://dutu-app-api.vercel.app/api/task/delete/${taskToDelete._id}`,
+        `https://dutu-app-api.vercel.app/task/delete/${taskToDelete._id}`,
         { headers: { Authorization: `Bearer ${token}` } }
       );
 
@@ -136,7 +136,7 @@ const Dashboard = () => {
   
     try {
       await axios.put(
-        `https://dutu-app-api.vercel.app/api/task/edit/${editingTask._id}`,
+        `https://dutu-app-api.vercel.app/task/edit/${editingTask._id}`,
         { name: taskName },
         { headers: { Authorization: `Bearer ${token}` } }
       );

@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 import { FaUserPlus, FaSignInAlt } from 'react-icons/fa';
+import Footer from '../components/Footer';
 
 const SignUp = () => {
   useEffect(() => {
@@ -48,7 +49,7 @@ const SignUp = () => {
   
   
     try {
-      const response = await axios.post('https://dutu-app-api.vercel.app/api/auth/register', { 
+      const response = await axios.post('https://dutu-app-api.vercel.app/auth/register', { 
         name, 
         email, 
         password 
@@ -184,6 +185,7 @@ const SignUp = () => {
             </button>
           </p>
         </form>
+        <Footer />
       </div>
 
       {/* Custom CSS for all form fields */}

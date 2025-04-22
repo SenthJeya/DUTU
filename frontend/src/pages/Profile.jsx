@@ -37,7 +37,7 @@ const Profile = () => {
   const handleSave = async () => {
     try {
       const response = await axios.put(
-        `https://dutu-app-api.vercel.app/api/auth/update/${userId}`,
+        `https://dutu-app-api.vercel.app/auth/update/${userId}`,
         { name: updatedName },
         {
           headers: {
@@ -59,7 +59,7 @@ const Profile = () => {
     setDeleting(true);
   
     try {
-      await axios.delete(`https://dutu-app-api.vercel.app/api/auth/delete/${userId}`, {
+      await axios.delete(`https://dutu-app-api.vercel.app/auth/delete/${userId}`, {
         headers: {
           Authorization: `Bearer ${token}`
         }
