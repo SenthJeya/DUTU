@@ -59,6 +59,7 @@ const SignUp = () => {
       navigate('/');
     } catch (error) {
       const errorMessage = error.response?.data?.message || 'Registration failed';
+      setLoading(false);
       toast.error(errorMessage);
     }
   };
