@@ -60,6 +60,7 @@ const SignIn = () => {
       }, 2000);
     } catch (error) {
       const errorMessage = error.response?.data?.message || 'Login failed';
+      setLoading(false);
       toast.error(errorMessage);
       console.error('Sign-in error:', error);
     }
