@@ -153,7 +153,7 @@ const SignIn = () => {
             </button>
           </p>
         </form>
-        <Footer />
+        {/* <Footer /> */}
 
       </div>
 

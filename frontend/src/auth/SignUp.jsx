@@ -186,7 +186,7 @@ const SignUp = () => {
             </button>
           </p>
         </form>
-        <Footer />
+        {/* <Footer /> */}
       </div>
 
       {/* Custom CSS for all form fields */}
